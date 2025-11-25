@@ -15,6 +15,10 @@ export async function createUser(userId: string): Promise<IUser> {
     // Generate wallet
     const walletInfo = generateWallet();
 
+    if (!walletInfo.seed) {
+        throw new Error('Failed to generate wallet seed');
+    }
+
     // Create user
     const user = createDefaultUser(
         userId,
